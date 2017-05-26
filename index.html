@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Map</title>
+
+    <style>
+      #map {
+        height: 900px;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  </head>
+  <body>
+    <div id="control">
+      <select id="matrix_selector">
+      </select>
+
+      <input type="button" id="btn_save" value="Save" />
+      <span id="saved">Unsaved</span>
+
+      <!--
+      <input id="matrix_min" type="text"></input>
+      <input id="matrix_max" type="text"></input>
+      -->
+      <div id="slider">
+        <div>
+          <input type="text" id="range" readonly style="width: 100%; border:0; color:#f6931f; font-weight:bold;">
+        </div>
+        <div id="slider-range"></div>
+      </div>
+    </div>
+
+    <div id="map">
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="js/vendor/jquery.ba-throttle-debounce.min.js"></script>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
+
