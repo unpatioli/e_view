@@ -25,6 +25,7 @@ var voronoi = d3.voronoi()
   .x(function(p) { return p.x; })
   .y(function(p) { return p.y; });
 
+var shown = false;
 var setColor = function() {
   var m_val = d3.select(this).attr(m_id);
 
@@ -105,24 +106,16 @@ var draw = function() {
             return (el && el.length != 0);
           });
         return "M" + fd.join("L") + "Z";
-      })
-    .attr("id", function(d) { return d.data.properties.id; })
-    .attr("m_0", function(d) { return d.data.properties.m_0; })
-    .attr("m_1", function(d) { return d.data.properties.m_1; })
-    .attr("m_2", function(d) { return d.data.properties.m_2; })
-    .attr("m_3", function(d) { return d.data.properties.m_3; })
-    .attr("m_4", function(d) { return d.data.properties.m_4; })
-    .attr("m_5", function(d) { return d.data.properties.m_5; })
-    .attr("m_6", function(d) { return d.data.properties.m_6; })
-    .attr("m_7", function(d) { return d.data.properties.m_7; })
-    .attr("m_8", function(d) { return d.data.properties.m_8; })
-    .attr("m_9", function(d) { return d.data.properties.m_9; })
-    .attr("m_10", function(d) { return d.data.properties.m_10; })
-    .attr("m_11", function(d) { return d.data.properties.m_11; })
-    .attr("m_12", function(d) { return d.data.properties.m_12; })
-    .attr("m_13", function(d) { return d.data.properties.m_13; })
-    .attr("m_14", function(d) { return d.data.properties.m_14; })
-    .attr("m_15", function(d) { return d.data.properties.m_15; })
+      }
+    )
+
+    .each(function(d) {
+      var header = d3.select(this);
+      d3.keys(d.data.properties).forEach(function(key) {
+        header.attr(key, d.data.properties[key]);
+      });
+    })
+
     .style("stroke-width", "0")
     .style("fill", setColor)
     .style("opacity", "0.5")
