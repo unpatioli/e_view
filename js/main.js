@@ -17,7 +17,8 @@ var points,
     m_titles,
     m_id,
     m_min, m_max,
-    v_min, v_max;
+    v_min, v_max,
+    continuous_colors = true;
 
 var saved_state = {};
 
@@ -25,7 +26,7 @@ var voronoi = d3.voronoi()
   .x(function(p) { return p.x; })
   .y(function(p) { return p.y; });
 
-var shown = false;
+
 var setColor = function() {
   var m_val = d3.select(this).attr(m_id);
 
@@ -39,6 +40,14 @@ var setColor = function() {
   }
   var range = 130;
   k = Math.floor(range - range*k);
+  if (!continuous_colors) {
+    var steps_count = 2;
+    var step = Math.floor(range / steps_count);
+    k = step * Math.ceil(k / step);
+  }
+  if (k > range) {
+    k = range;
+  }
 
   var color = "hsl(" + k + ", 100%, 50%)";
 
@@ -223,6 +232,11 @@ $(function() {
   $("#btn_save").click(function() {
     saved_state[m_id] = [v_min, v_max];
     set_saved_val();
+  });
+
+  $("#continuous_colors").change(function() {
+    continuous_colors = $(this).prop("checked");
+    draw();
   });
 });
 
